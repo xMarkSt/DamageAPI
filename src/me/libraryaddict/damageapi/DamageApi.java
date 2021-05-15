@@ -38,20 +38,10 @@ public class DamageApi {
                     "org.bukkit.craftbukkit." + Bukkit.getServer().getClass().getName().split("\\.")[3]
                             + ".inventory.CraftItemStack").getMethod("asNMSCopy", ItemStack.class);
             Object armor = getNmsArmor(Material.LEATHER_HELMET);
-            Field armorField = null;
-            for (Field field : armor.getClass().getFields()) {
-                if (field.getType() == int.class && Modifier.isFinal(field.getModifiers())) {
-                    if (field.getInt(armor) != 0) {
-                        if (armorField != null) {
-                            Thread.dumpStack();
-                        }
-                        armorField = field;
-                    }
-                }
-            }
+            Method armorMethod = armor.getClass().getMethod("e");
             for (Material material : armorMaterials) {
                 armor = getNmsArmor(material);
-                armorRatings.put(material, armorField.getInt(armor));
+                armorRatings.put(material, (int)armorMethod.invoke(armor));
             }
         } catch (Exception ex) {
             ex.printStackTrace();

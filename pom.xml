@@ -6,6 +6,8 @@
 	<version>0.1</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<finalName>${project.name}</finalName>
+		<defaultGoal>clean package</defaultGoal>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -27,7 +29,7 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.13.2-R0.1-SNAPSHOT</version>
+			<version>1.16.5-R0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
